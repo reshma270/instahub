@@ -44,6 +44,11 @@ INSTALLED_APPS = [
 # Tells Django to use the custom user model, UserProfile, instead of default user model, User.
 AUTH_USER_MODEL = "users.UserProfile"
 
+# Redirect users to the login page after logging out
+LOGOUT_REDIRECT_URL = "/login/"
+
+# Redirect users to the profile page after logging in
+LOGIN_REDIRECT_URL = "/profile/"
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

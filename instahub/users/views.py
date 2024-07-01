@@ -1,6 +1,6 @@
 # users/views.py
 from django.shortcuts import render, redirect
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
 from .forms import UserRegisterForm
 from django.contrib.auth.decorators import login_required
 
@@ -31,3 +31,8 @@ def register(request):
 @login_required
 def profile(request):
     return render(request, "users/profile.html")
+
+
+def custom_logout(request):
+    logout(request)
+    return redirect("login")
