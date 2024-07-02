@@ -21,9 +21,13 @@ try:
 except ImportError:
     pass
 
-# Add MEDIA_URL and MEDIA_ROOT
+# Static files (CSS, JavaScript, Images)
+STATIC_URL = "/static/"
+
+# Media files (user uploaded files)
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/

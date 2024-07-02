@@ -6,5 +6,14 @@
 
 {% block content %}
     <h2>Your Profile</h2>
-    <p>Welcome, {{ user.username }}!</p>
+    <p>Username: {{ user.username }}</p>
+    <p>Email: {{ user.email }}</p>
+    <p>Bio: {{ user.bio }}</p>
+    {% if user.profile_picture %}
+        <p>Profile Picture URL: {{ user.profile_picture.url }}</p>
+        <img src="{{ user.profile_picture.url }}" alt="Profile Picture" style="max-width: 200px;">
+    {% else %}
+        <p>No profile picture uploaded.</p>
+    {% endif %}
+    <a class="btn btn-primary" href="{% url 'edit_profile' %}">Edit Profile</a>
 {% endblock %}
