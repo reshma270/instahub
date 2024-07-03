@@ -3,6 +3,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout
 from .forms import UserRegisterForm, UserUpdateForm
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse_lazy
+from django.contrib.auth import views as auth_views
 
 
 # Create your views here.
@@ -49,6 +51,16 @@ def edit_profile(request):
     return render(
         request, "users/edit_profile.html", {"form": form}
     )  # Render the edit profile template
+
+
+# Custom password change view to use our own template and redirect on success
+class CustomPasswordCHangeView(auth_views.PasswordChangeView):
+    template_name = (
+        "users/change_password.html"  # Template for rendering the change password form
+    )
+    success_url = reverse_lazy(
+        "password_change_done"
+    )  # URL to redirect to after successful password change
 
 
 # Custom logout view to handle user logout
