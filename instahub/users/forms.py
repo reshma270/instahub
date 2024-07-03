@@ -26,3 +26,8 @@ class UserUpdateForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ["username", "email", "bio", "profile_picture"]
+
+
+# Form for searching users by username
+class UserSearchForm(forms.Form):
+    username = forms.CharField(max_length=150, required=True, label="Search Users")

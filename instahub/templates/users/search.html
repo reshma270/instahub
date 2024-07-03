@@ -1,0 +1,22 @@
+<!-- templates/users/search.html -->
+
+{% extends 'base.html' %}
+
+{% block title %}Search Users - InstaHub{% endblock %}
+
+{% block content %}
+    <h2>Search Users</h2>
+    <form method="get" action="{% url 'search_users' %}">
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+
+    {% if results %}
+        <h3>Results:</h3>
+        <ul>
+            {% for user in results %}
+                <li><a href="{% url 'view_profile' user.username %}">{{ user.username }}</a></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}

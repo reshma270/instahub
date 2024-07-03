@@ -9,6 +9,9 @@ class UserProfile(AbstractUser):
     profile_picture = models.ImageField(
         upload_to="profile_pictures/", blank=True, null=True
     )
+    following = models.ManyToManyField(
+        "self", symmetrical=False, related_name="followers", blank=True
+    )  # Many-to-many field for following users
 
     def __str__(self):
         return self.username

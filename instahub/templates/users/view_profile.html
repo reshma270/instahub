@@ -1,0 +1,24 @@
+<!-- templates/users/view_profile.html -->
+
+{% extends 'base.html' %}
+
+{% block title %}{{ user.username }}'s Profile - InstaHub{% endblock %}
+
+{% block content %}
+    <h2>{{ user.username }}'s Profile</h2>
+    {% if user.profile_picture %}
+        <img src="{{ user.profile_picture.url }}" alt="Profile Picture" style="max-width: 200px;">
+    {% else %}
+        <p>No profile picture uploaded.</p>
+    {% endif %}
+    <p>Bio: {{ user.bio }}</p>
+    <p>Email: {{ user.email }}</p>
+
+    {% if user != request.user %}
+        {% if user in request.user.following.all %}
+            <a class="btn btn-secondary" href="{% url 'unfollow_user' user.username %}">Unfollow</a>
+        {% else %}
+            <a class="btn btn-primary" href="{% url 'follow_user' user.username %}">Follow</a>
+        {% endif %}
+    {% endif %}
+{% endblock %}

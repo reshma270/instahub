@@ -1,7 +1,9 @@
 # users/views.py
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth import login, logout
-from .forms import UserRegisterForm, UserUpdateForm
+
+from .models import UserProfile
+from .forms import UserRegisterForm, UserSearchForm, UserUpdateForm
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from django.contrib.auth import views as auth_views
@@ -61,6 +63,43 @@ class CustomPasswordChangeView(auth_views.PasswordChangeView):
     success_url = reverse_lazy(
         "password_change_done"
     )  # URL to redirect to after successful password change
+
+
+# Searching for users ny username
+@login_required
+def search_users(request):
+    form = UserSearchForm()
+    results = []
+    if request.method == "GET":
+        form = UserSearchForm(request.GET)
+        if form.is_valid():
+            username = form.cleaned_data["username"]
+            results = UserProfile.objects.filter(
+                username__icontains=username
+            )  # Search users by username
+    return render(request, "users/search.html", {"form": form, "results": results})
+
+
+# Following users
+@login_required
+def follow_user(request, username):
+    user_to_follow = get_object_or_404(UserProfile, username=username)
+    request.user.following.add(user_to_follow)
+    return redirect("view_profile", username=username)
+
+
+# Unfollow users
+@login_required
+def unfollow_user(request, username):
+    user_to_unfollow = get_object_or_404(UserProfile, username=username)
+    request.user.following.remove(user_to_unfollow)
+    return redirect("view_profile", username=username)
+
+
+@login_required
+def view_profile(request, username):
+    user_profile = get_object_or_404(UserProfile, username=username)
+    return render(request, "users/view_profile.html", {"user": user_profile})
 
 
 # Custom logout view to handle user logout
