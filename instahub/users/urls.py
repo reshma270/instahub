@@ -2,7 +2,7 @@
 
 from django.urls import path
 from .views import (
-    CustomPasswordCHangeView,
+    CustomPasswordChangeView,
     register,
     profile,
     custom_logout,
@@ -25,7 +25,7 @@ urlpatterns = [
     ),
     path("logout/", custom_logout, name="logout"),  # Use the custom logout view,
     path(
-        "password_change/", CustomPasswordCHangeView.as_view(), name="password_change"
+        "password_change/", CustomPasswordChangeView.as_view(), name="password_change"
     ),  # URL for changing password
     path(
         "password_change/done/",

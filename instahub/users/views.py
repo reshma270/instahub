@@ -54,7 +54,7 @@ def edit_profile(request):
 
 
 # Custom password change view to use our own template and redirect on success
-class CustomPasswordCHangeView(auth_views.PasswordChangeView):
+class CustomPasswordChangeView(auth_views.PasswordChangeView):
     template_name = (
         "users/change_password.html"  # Template for rendering the change password form
     )
