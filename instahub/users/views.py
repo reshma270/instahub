@@ -102,6 +102,36 @@ def view_profile(request, username):
     return render(request, "users/view_profile.html", {"user": user_profile})
 
 
+@login_required
+def followers_list(request, username):
+    if request.user.username != username:
+        return redirect(
+            "profile"
+        )  # Redirect to own profile if trying to access others' lists
+    user_profile = get_object_or_404(UserProfile, username=username)
+    followers = user_profile.followers.all()
+    referrer = request.META.get("HTTP_REFERER", "")  # Get the referring URL
+    return render(
+        request,
+        "users/followers_list.html",
+        {"user_profile": user_profile, "followers": followers, "referrer": referrer},
+    )
+
+
+@login_required
+def following_list(request, username):
+    if request.user.username != username:
+        return redirect("profile")
+    user_profile = get_object_or_404(UserProfile, username=username)
+    following = user_profile.following.all()
+    referrer = request.META.get("HTTP_REFERER", "")  # Get the referring URL
+    return render(
+        request,
+        "users/following_list.html",
+        {"user_profile": user_profile, "following": following, "referrer": referrer},
+    )
+
+
 # Custom logout view to handle user logout
 def custom_logout(request):
     logout(request)

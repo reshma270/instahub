@@ -4,6 +4,8 @@ from django.urls import path
 from .views import (
     CustomPasswordChangeView,
     follow_user,
+    followers_list,
+    following_list,
     register,
     profile,
     custom_logout,
@@ -38,7 +40,7 @@ urlpatterns = [
         ),
         name="password_change_done",
     ),  # URL for success message
-    path("search/", search_users, name="search_users"),  # URL fr searching users
+    path("search/", search_users, name="search_users"),  # URL for searching users
     path(
         "follow/<str:username>/", follow_user, name="follow_user"
     ),  # URL for following users
@@ -48,4 +50,10 @@ urlpatterns = [
     path(
         "profile/<str:username>/", view_profile, name="view_profile"
     ),  # URL for viewing other users' profiles
+    path(
+        "profile/<str:username>/followers/", followers_list, name="followers_list"
+    ),  # URL for followers list
+    path(
+        "profile/<str:username>/following/", following_list, name="following_list"
+    ),  # URL for following list
 ]

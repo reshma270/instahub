@@ -14,6 +14,8 @@
     <p>{{ user.username }}</p>
     <p>{{ user.bio }}</p>
     <p>Email: {{ user.email }}</p>
+    <p>Followers: <a href="{% url 'followers_list' user.username %}">{{ user.followers_count }}</a></p>
+    <p>Following: <a href="{% url 'following_list' user.username %}">{{ user.following_count }}</a></p>
     <a class="btn btn-primary" href="{% url 'edit_profile' %}">Edit Profile</a>
     <a class='btn btn-secondary' href='{% url "password_change" %}'>Change Password</a>
 {% endblock %}

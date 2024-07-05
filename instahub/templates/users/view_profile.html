@@ -13,6 +13,8 @@
     {% endif %}
     <p>Bio: {{ user.bio }}</p>
     <p>Email: {{ user.email }}</p>
+    <p>Followers: {{ user.followers_count }}</p>
+    <p>Following: {{ user.following_count }}</p>
 
     {% if user != request.user %}
         {% if user in request.user.following.all %}
