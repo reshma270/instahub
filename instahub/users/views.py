@@ -1,7 +1,7 @@
 # users/views.py
 from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth import login, logout
-
+from posts.models import Post
 from .models import UserProfile
 from .forms import UserRegisterForm, UserSearchForm, UserUpdateForm
 from django.contrib.auth.decorators import login_required
@@ -35,7 +35,10 @@ def register(request):
 # View for displaying the user's profile
 @login_required
 def profile(request):
-    return render(request, "users/profile.html")
+    user_posts = Post.objects.filter(
+        author=request.user
+    )  # Fetch posts for the logged-in user
+    return render(request, "users/profile.html", {"user_posts": user_posts})
 
 
 # View for editing profile information

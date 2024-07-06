@@ -18,4 +18,4 @@ def create_post(request):
             return redirect("profile")
     else:
         form = PostCreationForm()
-    return render(request, "users/create_post.html", {"form": form})
+    return render(request, "posts/create_post.html", {"form": form})
