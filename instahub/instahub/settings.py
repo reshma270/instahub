@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "users",
+    "posts",
 ]
 
 # Tells Django to use the custom user model, UserProfile, instead of default user model, User.

@@ -3,7 +3,7 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth import login, logout
 
 from .models import UserProfile
-from .forms import UserRegisterForm, UserSearchForm, UserUpdateForm, PostCreationForm
+from .forms import UserRegisterForm, UserSearchForm, UserUpdateForm
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from django.contrib.auth import views as auth_views
