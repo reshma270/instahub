@@ -2,7 +2,7 @@
 
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from .models import Post, UserProfile
+from .models import UserProfile
 
 
 # Define the UserRegisterForm class, which extends the built-in UserCreationForm
