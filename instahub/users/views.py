@@ -8,6 +8,11 @@ from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from django.contrib.auth import views as auth_views
 
+# from django.http import HttpResponse
+# from django.conf import settings
+# def debug_view(request):
+#     return HttpResponse(f"Redirect URL: {settings.LOGIN_REDIRECT_URL}")
+
 
 # Create your views here.
 

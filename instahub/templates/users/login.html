@@ -9,6 +9,7 @@
 <form method="POST">
     {% csrf_token %}
     {{ form.as_p }}
+    <input type="hidden" name="next" value="{{ next|default:"/posts/feed/" }}">
     <button type="submit" class="btn btn-primary btn-block">Login</button>
 </form>
 {% endblock %}

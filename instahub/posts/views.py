@@ -42,3 +42,15 @@ def delete_post(request, post_id):
         post.delete()
         return redirect("profile")
     return render(request, "posts/delete_post.html", {"post": post})
+
+
+@login_required
+def feed(request):
+    user = request.user
+    following_users = (
+        user.following.all()
+    )  # Get the users the current user is following.
+    posts = Post.objects.filter(author__in=following_users).order_by(
+        "-created_at"
+    )  # Get posts from following users, ordered by creation date
+    return render(request, "posts/feed.html", {"posts": posts})
