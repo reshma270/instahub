@@ -53,7 +53,7 @@ AUTH_USER_MODEL = "users.UserProfile"
 LOGOUT_REDIRECT_URL = "/login/"
 
 # Redirect users to the profile page after logging in
-LOGIN_REDIRECT_URL = "posts/feed/"
+LOGIN_REDIRECT_URL = "/posts/feed/"
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
