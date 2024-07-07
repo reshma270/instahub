@@ -1,26 +1,41 @@
-<!-- templates/users/view_profile.html -->
+<!-- templates/users/view_profile.html -->  
 
 {% extends 'base.html' %}
 
 {% block title %}{{ user.username }}'s Profile - InstaHub{% endblock %}
 
 {% block content %}
-    <h2>{{ user.username }}'s Profile</h2>
-    {% if user.profile_picture %}
-        <img src="{{ user.profile_picture.url }}" alt="Profile Picture" style="max-width: 200px;">
-    {% else %}
-        <p>No profile picture uploaded.</p>
-    {% endif %}
-    <p>Bio: {{ user.bio }}</p>
-    <p>Email: {{ user.email }}</p>
-    <p>Followers: {{ user.followers_count }}</p>
-    <p>Following: {{ user.following_count }}</p>
-
-    {% if user != request.user %}
-        {% if user in request.user.following.all %}
-            <a class="btn btn-secondary" href="{% url 'unfollow_user' user.username %}">Unfollow</a>
-        {% else %}
-            <a class="btn btn-primary" href="{% url 'follow_user' user.username %}">Follow</a>
-        {% endif %}
-    {% endif %}
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header">
+            <h2>{{ user.username }}'s Profile</h2>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4 text-center">
+                    {% if user.profile_picture %}
+                        <img src="{{ user.profile_picture.url }}" alt="Profile Picture" class="img-thumbnail" style="width: 150px; height: 150px; object-fit: cover;">
+                    {% else %}
+                        <p>No profile picture uploaded.</p>
+                    {% endif %}
+                </div>
+                <div class="col-md-8">
+                    <p><strong>{{ user.username }}</strong></p>
+                    <p>Bio: {{ user.bio }}</p>
+                    <p>Email: {{ user.email }}</p>
+                    <p>Followers: {{ user.followers_count }}</p>
+                    <p>Following: {{ user.following_count }}</p>
+                    {% if user != request.user %}
+                        {% if user in request.user.following.all %}
+                            <a class="btn btn-secondary btn-sm" href="{% url 'unfollow_user' user.username %}">Unfollow</a>
+                        {% else %}
+                            <a class="btn btn-primary btn-sm" href="{% url 'follow_user' user.username %}">Follow</a>
+                        {% endif %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
+

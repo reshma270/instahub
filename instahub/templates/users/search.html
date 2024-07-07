@@ -5,18 +5,34 @@
 {% block title %}Search Users - InstaHub{% endblock %}
 
 {% block content %}
-    <h2>Search Users</h2>
-    <form method="get" action="{% url 'search_users' %}">
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Search</button>
-    </form>
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header">
+            <h2>Search Users</h2>
+        </div>
+        <div class="card-body">
+            <form method="get" action="{% url 'search_users' %}">
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary btn-block">Search</button>
+            </form>
+        </div>
+    </div>
 
     {% if results %}
-        <h3>Results:</h3>
-        <ul>
-            {% for user in results %}
-                <li><a href="{% url 'view_profile' user.username %}">{{ user.username }}</a></li>
-            {% endfor %}
-        </ul>
+        <div class="card mt-4">
+            <div class="card-header">
+                <h3>Results:</h3>
+            </div>
+            <div class="card-body">
+                <ul class="list-group">
+                    {% for user in results %}
+                        <li class="list-group-item">
+                            <a href="{% url 'view_profile' user.username %}">{{ user.username }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
     {% endif %}
+</div>
 {% endblock %}

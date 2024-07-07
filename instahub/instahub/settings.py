@@ -23,6 +23,7 @@ except ImportError:
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = "/static/"
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 
 # Media files (user uploaded files)
 MEDIA_URL = "/media/"

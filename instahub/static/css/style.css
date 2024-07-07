@@ -1,0 +1,27 @@
+body {
+    background-color: #f8f9fa;
+    font-family: Arial, sans-serif;
+}
+
+.card {
+    margin-bottom: 20px;
+}
+
+.card-header h2, .card-header h3 {
+    margin: 0;
+}
+
+.card-body img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.btn-sm {
+    margin-right: 5px;
+}
+
+.container {
+    max-width: 900px;
+    margin-top: 50px;
+}

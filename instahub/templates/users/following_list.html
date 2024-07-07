@@ -5,11 +5,26 @@
 {% block title %}{{ user_profile.username }}'s Following - InstaHub{% endblock %}
 
 {% block content %}
-    <h2>{{ user_profile.username }}'s Following</h2>
-    <ul>
-        {% for follow in following %}
-            <li><a href="{% url 'view_profile' follow.username %}">{{ follow.username }}</a></li>
-        {% endfor %}
-    </ul>
-    <a class="btn btn-secondary" href="{{ referrer }}">Back to Profile</a>
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header">
+            <h2>{{ user_profile.username }}'s Following</h2>
+        </div>
+        <div class="card-body">
+            {% if following %}
+                <ul class="list-group">
+                    {% for follow in following %}
+                        <li class="list-group-item">
+                            <a href="{% url 'view_profile' follow.username %}">{{ follow.username }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No following users found.</p>
+            {% endif %}
+            <a class="btn btn-secondary btn-block mt-3" href="{{ referrer }}">Back to Profile</a>
+        </div>
+    </div>
+</div>
 {% endblock %}
+
