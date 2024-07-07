@@ -54,3 +54,17 @@ def feed(request):
         "-created_at"
     )  # Get posts from following users, ordered by creation date
     return render(request, "posts/feed.html", {"posts": posts})
+
+
+@login_required
+def like_post(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+    post.likes.add(request.user)
+    return redirect("feed")
+
+
+@login_required
+def unlike_post(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+    post.likes.remove(request.user)
+    return redirect("feed")

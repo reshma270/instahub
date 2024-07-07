@@ -15,6 +15,10 @@ class Post(models.Model):
     created_at = models.DateTimeField(
         auto_now_add=True
     )  # A datetime field to automatically set the time when the post is created.
+    likes = models.ManyToManyField(UserProfile, related_name="liked_posts", blank=True)
 
     def __str__(self):
         return f"{self.author.username}'s post"
+
+    def total_likes(self):
+        return self.likes.count()
