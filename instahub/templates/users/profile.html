@@ -25,8 +25,11 @@
                     <p>Email: {{ user.email }}</p>
                     <p>Followers: <a href="{% url 'followers_list' user.username %}">{{ user.followers_count }}</a></p>
                     <p>Following: <a href="{% url 'following_list' user.username %}">{{ user.following_count }}</a></p>
-                    <a class="btn btn-primary btn-sm" href="{% url 'edit_profile' %}">Edit Profile</a>
-                    <a class="btn btn-secondary btn-sm" href="{% url 'password_change' %}">Change Password</a>
+                    <div class="d-flex">
+                        <a class="btn btn-primary btn-sm mr-2" href="{% url 'edit_profile' %}">Edit Profile</a>
+                        <a class="btn btn-secondary btn-sm mr-2" href="{% url 'password_change' %}">Change Password</a>
+                        <a class="btn btn-primary btn-sm" href="{% url 'create_post' %}">New Post</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -63,4 +66,3 @@
     </div>
 </div>
 {% endblock %}
-
