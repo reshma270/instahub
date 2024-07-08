@@ -1,5 +1,5 @@
 # InstaHub
-InstaHub is a simple Instagram clone application built with Python, Django, Bootstrap and PostgreSQL.
+InstaHub is a simple Instagram clone application built with Python, Django, Bootstrap and PostgreSQL. It allows users to register, log in, create posts, follow other users, and interact with posts through likes.
 
 ## Technologies Used
 - Python
